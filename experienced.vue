@@ -1,9 +1,11 @@
-<!--author: yezi-->
+<!--author: yezi0507-->
+<!--感谢billbill@山羊的前端小窝提供的思路-->
+<!--有用点个star喵-->
 <template>
 <div class="shell" id="shell">
-  <h1>典创工作室</h1>
+  <h1>标题</h1>
   <div class="header">
-    <h3 class="subtitle">DCT</h3>
+    <h3 class="subtitle">副标题</h3>
   </div>
   <div class="timeline">
     <div  v-for="(item, index) in items" :key="item.year" :class="['item', { 'even-item': index % 2 === 0 }]" :data-text="item['data-text'] "  ref="timelineItem">
@@ -27,26 +29,14 @@ export default {
       timelineId: 'shell',
       timelineElement: null, // 用于缓存 timeline 的 DOM 引用
       activeIndex: 0,
+      /* 存放你自己的数据*/
       items: [
         {
           'data-text': '嗡嗡嗡',
           img: require('@/assets/image/1.jpg'),
           year: 2015,
           desc: '加油'
-        },
-        {
-          'data-text': '1111',
-          img: require('@/assets/image/1.jpg'),
-          year: 2017,
-          desc: 1111
-        },
-        {
-          'data-text': '1111',
-          img: require('@/assets/image/1.jpg'),
-          year: 2018,
-          desc: 1111
         }
-      ]
     }
   },
   mounted () {
@@ -81,6 +71,7 @@ export default {
         const min = itemElement.offsetTop
         const max = min + itemElement.offsetHeight
         const screenHeightPercentage = window.innerHeight * 0.1 // 屏幕高度偏移量
+        //需要随着滑动更改背景在这也加上上面注释代码
         if (pos >= min && pos <= max + screenHeightPercentage) {
           const items = this.timelineElement.querySelectorAll('.item')
           items.forEach((item, indexItem) => {
